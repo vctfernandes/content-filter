@@ -17,7 +17,7 @@ module.exports = function filter(options) {
 		}
 		var found = null;
 		/* Examining the URL */
-		for (var i = 0; i < urlBlackList.length; i++){
+		for (var i = 0, len = urlBlackList.length; i < len; ++i){
 			if (req.originalUrl.indexOf(urlBlackList[i]) !== -1) {
 				found = urlBlackList[i];
 				break;
@@ -33,7 +33,7 @@ module.exports = function filter(options) {
 			// // https://nodejs.org/api/process.html#process_process_hrtime
 			// var hrstart = process.hrtime()
 			jsonToString(req.body, typeList, checkNames, function(str){
-				for (var i = 0; i < bodyBlackList.length; i++){
+				for (var i = 0, len = bodyBlackList.length; i < len; ++i){
 					if (str.indexOf(bodyBlackList[i]) !== -1) {
 						found = bodyBlackList[i];
 						break;
@@ -64,7 +64,7 @@ function jsonToString(json, typeList, checkNames, callback) {
 			callback('');
 		}
 
-		for (var i = 0; i < keys.length; i++) {
+		for (var i = 0, len = keys.length; i < len; ++i) {
 			// console.log('keys: ' + keys)
 			// console.log('keys.length: ' + keys.length)
 			if (typeList.indexOf(typeof data[keys[i]]) !== -1) {
